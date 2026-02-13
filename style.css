@@ -10,6 +10,7 @@
     --ui-col-text: white;
     --ui-col-text-alt: #353535;
     --ui-col-light: #BCC2E5;
+    --ui-col-barbackdrop:#EEEFF8;
     --ui-shadow-fill: #3348b07F;
     --ui-shadow-black: #0004;
     --btn-shadow: 12px 12px 4px var(--ui-shadow-fill);
@@ -198,6 +199,56 @@ main {
     }
 
     /* STUDENT-PROFILE */
+    .student-profile{
+        padding-top:100px;
+        padding-bottom:60px;
+        padding-inline: 96px;
+
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+
+        .profile-container{
+            width: 500px;
+            height: 500px;
+            background-color: var(--ui-col-text);
+            filter: drop-shadow(0 0 0.25rem rgba(0, 0, 0, 0.25));
+            color: var(--ui-col-fill);
+
+        }
+        .student-info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            img{
+                width: 75%;
+            }
+        
+        }
+
+        .student-grades{
+            display: flex;
+            padding-block:57px;
+            padding-inline: 70px;
+
+            .grade{
+                .grade-bar{
+                    background-color: var(--ui-col-barbackdrop);  
+                    height: 100%;
+                
+                    .grade-fill{
+                        height: 90%;
+                        background-color: #3347B0;
+                    }
+                }
+            }
+
+        }
+    
+    }
+
 
 }
 
