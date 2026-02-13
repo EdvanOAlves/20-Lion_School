@@ -1,43 +1,52 @@
 /* CONFIGURAÇÕES GERAIS */
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-:root{
-    --ui-col-fill:#3347B0;
+
+:root {
+    --ui-col-fill: #3347B0;
+    --ui-shadow-fill: #3348b07F;
     --ui-col-text: white;
-    --ui-col-light:#BCC2E5
+    --ui-col-text-alt: black;
+    --ui-col-light: #BCC2E5
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     color: var(--ui-col-text);
     height: 100vh;
-    font-family: Roboto;
+    font-family: "Roboto", sans-serif;
 }
 
-header{
+a:hover{
+    cursor:pointer
+}
+
+/* HEADER */
+
+header {
     display: flex;
     background-color: var(--ui-col-fill);
     padding-inline: 96px;
     padding-block: 12px;
     justify-content: space-between;
-    
-    
-    .logo{
+
+
+    .logo {
         display: flex;
         align-items: center;
         width: 75px;
         gap: 11px;
-        
-        h1{
+
+        h1 {
             font-size: 1.5rem;
             font-weight: 700;
         }
-        
-        p{
+
+        p {
             font-size: 2.25rem;
         }
     }
@@ -48,27 +57,111 @@ header{
 /* MAIN */
 /* TODO: Quando começar a integração */
 
-main{
+main {
     flex-grow: 1;
+    width: 100vw;
+    display: flex;
+
+    .landing {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 96px;
+        padding-block: 78px;
+        
+        
+        .hero{
+            display: flex;
+            gap: 24px;
+
+            .hero-content {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                gap: 64px;
+                
+                
+                h2 {
+                    color: var(--ui-col-text-alt);
+                    font-family: "Roboto";
+                    font-size: 3.5rem;
+                    font-style: normal;
+                    font-weight: 300;
+                    
+                    span {
+                        font-weight: 600;
+                        color: var(--ui-col-fill);
+                    }
+                }
+                
+                img{
+                    max-width: 80%;
+                }
+            }
+            img{
+                width: auto;
+            }
+        }
+
+
+        .courses {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            gap: 50px;
+        
+            
+            .course{
+                flex-grow: 1;
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+                align-items: center;
+                
+
+                background-color: var(--ui-col-fill);
+                color: var(--ui-col-text);
+                
+                border-style: solid;
+                border-width: 1px;
+
+                font-size: 4rem;
+                font-weight: 500;
+            }
+
+            .course:hover{
+                cursor: pointer;
+                box-shadow: 12px 12px 4px var(--ui-shadow-fill);;
+                transform: scale(1.02);
+                transition: 0.2s ease-in-out
+            }
+            
+        }
+
+
+
+
+
+    }
 }
 
 /* FOOTER */
-footer{
+footer {
     display: flex;
     background-color: var(--ui-col-fill);
     padding-block: 22px;
     padding-inline: 96px;
     align-items: center;
     justify-content: space-between;
-    
-    
-    .contact-info{
+
+
+    .contact-info {
         display: flex;
         flex-direction: column;
         gap: 4px;
-    
-    
-        .contact-item{
+
+
+        .contact-item {
             display: flex;
             gap: 24px;
             align-items: center;
@@ -79,17 +172,17 @@ footer{
 
 
 
-.copyright{
+.copyright {
     font-size: 1.25rem;
 }
 
-.social-links{
+.social-links {
     list-style: none;
     display: flex;
     gap: 20px;
 
 
-    .circled{
+    .circled {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -98,12 +191,10 @@ footer{
         border: 2px solid;
         border-color: var(--ui-col-text);
         border-radius: 100%;
-        
-        
-        i{
+
+        i {
             color: var(--ui-col-text);
             font-size: 1.5rem;
         }
     }
 }
-
