@@ -1,0 +1,103 @@
+/* CONFIGURAÇÕES GERAIS */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --ui-col-fill:#3347B0;
+    --ui-col-text: white;
+    --ui-col-light:#BCC2E5
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    color: var(--ui-col-text);
+    height: 100vh;
+    font-family: Roboto;
+}
+
+/* HEADER */
+
+header{
+    display: flex;
+    background-color: var(--ui-col-fill);
+    padding-inline: 96px;
+    padding-block: 12px;
+    justify-content: space-between;
+
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    width: 75px;
+    gap: 11px;
+}
+
+h1{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo p{
+    font-size: 36px;
+}
+
+
+/* MAIN */
+/* TODO: Quando começar a integração */
+
+main{
+    flex-grow: 1;
+}
+
+/* FOOTER */
+footer{
+    display: flex;
+    background-color: var(--ui-col-fill);
+    padding-block: 22px;
+    padding-inline: 96px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact-info{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-item{
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    padding-block: 6px;
+}
+
+.copyright{
+    font-size: 20px;
+}
+
+.social-links{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+i{
+    color: var(--ui-col-text);
+    font-size: 24px;
+}
+
+.circled{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 2px solid;
+    border-color: var(--ui-col-text);
+    border-radius: 100%;
+}
