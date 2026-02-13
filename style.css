@@ -7,10 +7,13 @@
 
 :root {
     --ui-col-fill: #3347B0;
-    --ui-shadow-fill: #3348b07F;
     --ui-col-text: white;
-    --ui-col-text-alt: black;
-    --ui-col-light: #BCC2E5
+    --ui-col-text-alt: #353535;
+    --ui-col-light: #BCC2E5;
+    --ui-shadow-fill: #3348b07F;
+    --ui-shadow-black: #0004;
+    --btn-shadow: 12px 12px 4px var(--ui-shadow-fill);
+    --card-shadow: 8px 8px 12px var(--ui-shadow-black)
 }
 
 body {
@@ -24,6 +27,7 @@ body {
 a:hover{
     cursor:pointer
 }
+
 
 /* HEADER */
 
@@ -55,13 +59,14 @@ header {
 
 
 /* MAIN */
-/* TODO: Quando começar a integração */
 
 main {
     flex-grow: 1;
     width: 100vw;
     display: flex;
 
+
+    /* LANDING PAGE */
     .landing {
         width: 100%;
         display: flex;
@@ -83,7 +88,6 @@ main {
                 
                 h2 {
                     color: var(--ui-col-text-alt);
-                    font-family: "Roboto";
                     font-size: 3.5rem;
                     font-style: normal;
                     font-weight: 300;
@@ -131,7 +135,7 @@ main {
 
             .course:hover{
                 cursor: pointer;
-                box-shadow: 12px 12px 4px var(--ui-shadow-fill);;
+                box-shadow: var(--btn-shadow);
                 transform: scale(1.02);
                 transition: 0.2s ease-in-out
             }
@@ -143,6 +147,58 @@ main {
 
 
     }
+
+    /* STUDENT-LIST */
+    .student-list{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        place-items: center;
+        padding-block: 35px;
+        gap: 50px;
+
+
+
+        h2 {
+            font-size: 4rem;
+            font-weight: 500;
+            color: var(--ui-col-fill);
+
+        }
+
+        .students-container{
+            display: grid;
+            padding-inline: 96px;
+            grid-template-columns: 200px 200px 200px 200px 200px;
+            gap: 30px;
+
+            .student-card{
+                display: grid;
+                background-color: var(--ui-col-fill);
+                width: 200px;
+                gap: 16px;
+                padding-bottom: 32px;
+                box-shadow: var(--card-shadow);
+                
+                span{
+                    text-align: center;
+                    font-family: "Poppins";
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+            }
+
+            .student-card:hover{
+                cursor: pointer;
+                transform: scale(1.02);
+                transition: 0.2s ease-in-out
+            }
+        }
+    }
+
+    /* STUDENT-PROFILE */
+
 }
 
 /* FOOTER */
@@ -168,33 +224,37 @@ footer {
             padding-block: 6px;
         }
     }
-}
 
 
+    .copyright {
+        font-size: 1.25rem;
+    }
 
-.copyright {
-    font-size: 1.25rem;
-}
-
-.social-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-
-
-    .circled {
+    
+    .social-links {
+        list-style: none;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 48px;
-        height: 48px;
-        border: 2px solid;
-        border-color: var(--ui-col-text);
-        border-radius: 100%;
-
-        i {
-            color: var(--ui-col-text);
-            font-size: 1.5rem;
+        gap: 20px;
+    
+    
+        .circled {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 2px solid;
+            border-color: var(--ui-col-text);
+            border-radius: 100%;
+    
+            i {
+                color: var(--ui-col-text);
+                font-size: 1.5rem;
+            }
         }
     }
 }
+
+
+
+
