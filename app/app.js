@@ -8,8 +8,8 @@
 
 const main = document.getElementById('main')
 
-function loadPage(pageAddress, query){
-    switch(pageAddress){
+function loadPage(pageLevel, query){
+    switch(pageLevel){
         case 1:
             loadStudentList(query)
         case 2:
