@@ -44,9 +44,9 @@ export function renderLanding(){
     heroContent.appendChild(heroText);
     heroContent.appendChild(heroImg);
     hero.appendChild(studentImg);
-    hero.appendChild(coursesContainer)
+    landingContainer.appendChild(coursesContainer)
 
-    return landingContainer;
+    return coursesContainer;
 }
 
 //Carregamento de botão para um curso
@@ -63,8 +63,7 @@ export function renderLandingButton(coursesContainer, curso){
     courseIcon.src = (`./img/icon_${curso.sigla}.svg`)
 
     //Append
-    // main.appendChild(landingContainer);
-    courseButton.append(courseIcon);
+    courseButton.appendChild(courseIcon);
     courseButton.append(curso.sigla)
-    // landingContainer.appendChild(hero);
+    coursesContainer.appendChild(courseButton)
 }
