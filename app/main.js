@@ -1,5 +1,6 @@
 'use strict'
-import { renderLanding } from "./ui.js"
+import { getCourses } from "./api.js"
+import { renderLanding, renderLandingButton } from "./ui.js"
 // import { renderLandingButton } from "./ui.js"
 
 //ROTAS DISPONÍVEIS:
@@ -20,13 +21,15 @@ function loadPage(pageLevel, query){
         }
     }
     
-function loadLanding(){
+async function loadLanding(){
     //Requisição a API
-
+    const courses = await getCourses()
     //Carregando elementos
     const coursesContainer = renderLanding()
-    // renderLandingButton(coursesContainer)
+    courses.forEach(curso => {
+        renderLandingButton(coursesContainer, curso)
+    });
 
 }
 
-loadPage()
+await loadPage()
