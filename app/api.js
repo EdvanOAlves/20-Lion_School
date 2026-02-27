@@ -11,12 +11,17 @@ export async function getCourses(){
     const endPoint  = `https://lion-school-backend.onrender.com/cursos`;
     const response = await fetch(endPoint);
     const courses = await response.json();
+    if (response.status == 404)
+        return false;
     return courses;
 }
 
 export  async function getCourse(courseId){
     const endPoint  = `https://lion-school-phbo.onrender.com/cursos/${courseId}`;
     const response = await fetch(endPoint);
+    if (response.status == 404)
+        return false;
+    
     const course = await response.json();
     return  course;
 }
@@ -24,6 +29,8 @@ export  async function getCourse(courseId){
 export async function getStudents(courseId) {
     const endPoint  = `https://lion-school-phbo.onrender.com/alunos?curso_id=${courseId}`;
     const response = await fetch(endPoint);
+    if (response.status == 404)
+        return false;
     const students = await response.json();
     return  students;
 }
@@ -31,6 +38,8 @@ export async function getStudents(courseId) {
 export async function getStudent(studentId){
     const endPoint  = `https://lion-school-phbo.onrender.com/alunos/${studentId}`;
     const response = await fetch(endPoint);
+    if (response.status == 404)
+        return false;
     const student = await response.json();
     return  student;
 }
