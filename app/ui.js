@@ -8,8 +8,16 @@
 
 const main = document.getElementById('main')
 
+export function clearMain(){
+    main.replaceChildren()
+}
+
+
+// PÁGINA 01: LANDING PAGE
+
 //Carregamento de Elementos estáticos
 export function renderLanding(){
+    clearMain();
     //Iniciando elementos
     const landingContainer = document.createElement('div');
     const hero = document.createElement('div');
@@ -50,9 +58,8 @@ export function renderLanding(){
 }
 
 //Carregamento de botão para um curso
-export function renderLandingButton(coursesContainer, curso){
+export function renderCourseButton(coursesContainer, curso){
     //Iniciando elemento
-    // const landingContainer = document.createElement('div');
     const courseButton = document.createElement('button');
     const courseIcon = document.createElement('img');
 
@@ -66,4 +73,54 @@ export function renderLandingButton(coursesContainer, curso){
     courseButton.appendChild(courseIcon);
     courseButton.append(curso.sigla)
     coursesContainer.appendChild(courseButton)
+    return courseButton
 }
+
+// PÁGINA 02: LISTA DE ESTUDANTES
+
+//Carregamento de Elementos estáticos
+export function renderStudentListElements(nomeCurso){
+    clearMain();
+    //Iniciando elementos
+    const studentListContainer = document.createElement('div');
+    const courseTitle = document.createElement('h2');
+    const studentsGrid = document.createElement('div');
+
+    //Atribuindo classes
+    studentListContainer.classList.add('student-list');
+    studentsGrid.classList.add('students-container');
+
+    //Carregando conteúdo
+    courseTitle.textContent = nomeCurso;
+
+    //Append
+    main.appendChild(studentListContainer);
+    studentListContainer.appendChild(courseTitle);
+    studentListContainer.appendChild(studentsGrid);
+    return studentsGrid;
+}
+//Carregamento de card estudante
+export function renderStudentCard(studentsGrid, estudante){
+    //Iniciando elemento
+    const studentCard = document.createElement('div');
+    const studentPhoto = document.createElement('img');
+    const studentName = document.createElement('span');
+
+    //Atribuindo classes
+    studentCard.classList.add('student-card');
+    studentPhoto.classList.add('student-pfp');
+    studentName.classList.add('student-name');
+
+    //Carregando conteúdo
+    studentPhoto.src = estudante.foto;
+    studentName.textContent = String(estudante.nome).toUpperCase();
+
+    //Append
+    studentCard.appendChild(studentPhoto);
+    studentCard.appendChild(studentName);
+    studentsGrid.appendChild(studentCard);
+    return studentCard;
+}
+
+
+// PÁGINA 03: DADOS ESTUDANTE

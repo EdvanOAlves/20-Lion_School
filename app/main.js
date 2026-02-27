@@ -1,22 +1,23 @@
 'use strict'
 import { getCourses } from "./api.js"
-import { renderLanding, renderLandingButton } from "./ui.js"
+import { getCourse } from "./api.js"
+import { getStudents } from "./api.js"
+import { renderLanding, renderCourseButton, renderStudentListElements, renderStudentCard } from "./ui.js"
 // import { renderLandingButton } from "./ui.js"
 
-//ROTAS DISPONÍVEIS:
-// /cursos      Lista todos os cursos disponíveis
-// /alunos      Lista todos os alunos
-// /alunos?curso_id=1   Filtra alunos por curso (1 = DS, 2 = REDES)
-// /alunos/1    Detalhes de um aluno específico pelo ID
+function init(){
+    const lionLogo = document.getElementById('logo')
+    lionLogo.addEventListener('click',() => loadPage(undefined, undefined))
+    
+}
 
 function loadPage(pageLevel, query){
-    console.log('aeee')
     switch(pageLevel){
-        case 1:
+        case 1://Lista de estudantes do curso
             loadStudentList(query)
-        case 2:
-            loadStudentProfile(query)
-        default:
+        case 2: //Perfil de estudante
+            // loadStudentProfile(query)
+        default: //Página inicial
             loadLanding()
         }
     }
@@ -27,9 +28,23 @@ async function loadLanding(){
     //Carregando elementos
     const coursesContainer = renderLanding()
     courses.forEach(curso => {
-        renderLandingButton(coursesContainer, curso)
+        const courseButton = renderCourseButton(coursesContainer, curso)
+        courseButton.addEventListener('click',() => loadPage(1, curso.id))
     });
-
 }
 
-await loadPage()
+async function loadStudentList(courseId){
+    //Requisição a API
+    const course = await getCourse(courseId);
+    const students = await getStudents(courseId);
+    //Carregando elementos
+    const studentsGrid = renderStudentListElements(course.nome)
+    students.forEach(estudante => {
+        const studentCard = renderStudentCard(studentsGrid, estudante)
+        studentCard.addEventListener('click',() => loadPage(2, estudante.id))
+    });
+}
+
+
+init();
+await loadPage();
