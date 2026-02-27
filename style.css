@@ -1,3 +1,7 @@
+/* TODO: Fazer uma classe reaproveitável "hover" para  os cursor pointer
+    do jeito que está funciona, é mais prático pro javascript, mas o style fica
+    meio chatinho de adicionar botão*/
+
 /* CONFIGURAÇÕES GERAIS */
 * {
     padding: 0;
@@ -57,6 +61,9 @@ header {
         p {
             font-size: 2.25rem;
         }
+    }
+    .logo:hover{
+        cursor: pointer;
     }
 }
 
@@ -184,8 +191,12 @@ main {
                 gap: 16px;
                 padding-bottom: 32px;
                 box-shadow: var(--card-shadow);
+
+                .student-pfp{
+                    height: 200px;
+                }
                 
-                span{
+                .student-name{
                     text-align: center;
                     font-family: "Poppins";
                     font-weight: 500;
