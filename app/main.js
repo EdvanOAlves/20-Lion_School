@@ -39,20 +39,38 @@ async function loadLanding() {
 }
 
 async function loadStudentList(courseId) {
+    //Verificando se é um id Válido
+    if (!verifyId(courseId))
+        return false
+    
     //Requisição a API
     const course = await getCourse(courseId);
     const students = await getStudents(courseId);
+    
+    //Verificando resposta
+    if (!course || !students)
+        return 404
+
     //Carregando elementos e recebendo grid para inseração de estudantes
     const studentsGrid = renderStudentListElements(course.nome)
     students.forEach(estudante => {
         const studentCard = renderStudentCard(studentsGrid, estudante)
         studentCard.addEventListener('click', () => loadPage(2, estudante.id))
     });
+    return true;
 }
 
 async function loadStudentProfile(studentId) {
+    //Verificando se é um id Válido
+    if (!verifyId(studentId))
+        return false
+
     //Requisição a API
     const student = await getStudent(studentId);
+    //Verificando resposta
+    if (!student)
+        return 404
+
     //Construindo perfil e recebendo container de notas
     const gradeContainer = renderStudentProfile(student);
     //Carregando notas
@@ -75,6 +93,14 @@ function checkGrade(grade){
         return 'danger-grade'
     }
 }
+
+function verifyId (id){
+    if (id == null || id == undefined || id == '' || id == isNaN)
+        return false
+    else
+        return true
+}
+
 
 init();
 await loadPage();
