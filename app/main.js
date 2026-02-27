@@ -1,50 +1,80 @@
+//TODO: Refatorar nomes de variáveis, melhor deixar tudo em inglês
 'use strict'
 import { getCourses } from "./api.js"
 import { getCourse } from "./api.js"
 import { getStudents } from "./api.js"
-import { renderLanding, renderCourseButton, renderStudentListElements, renderStudentCard } from "./ui.js"
+import { getStudent } from "./api.js"
+import { renderLanding, renderCourseButton, renderStudentListElements, renderStudentCard, renderStudentProfile, renderGrade } from "./ui.js"
 // import { renderLandingButton } from "./ui.js"
 
-function init(){
+function init() {
     const lionLogo = document.getElementById('logo')
-    lionLogo.addEventListener('click',() => loadPage(undefined, undefined))
-    
+    lionLogo.addEventListener('click', () => loadPage(undefined, undefined))
+
 }
 
-function loadPage(pageLevel, query){
-    switch(pageLevel){
+function loadPage(pageLevel, query) {
+    switch (pageLevel) {
         case 1://Lista de estudantes do curso
-            loadStudentList(query)
+            loadStudentList(query);
+            break;
         case 2: //Perfil de estudante
-            // loadStudentProfile(query)
+            loadStudentProfile(query);
+            break;
         default: //Página inicial
-            loadLanding()
-        }
+            loadLanding();
+            break;
     }
-    
-async function loadLanding(){
+}
+
+async function loadLanding() {
     //Requisição a API
     const courses = await getCourses()
-    //Carregando elementos
+    //Carregando elementos e recebendo container para inserção de botões de cursos
     const coursesContainer = renderLanding()
     courses.forEach(curso => {
         const courseButton = renderCourseButton(coursesContainer, curso)
-        courseButton.addEventListener('click',() => loadPage(1, curso.id))
+        courseButton.addEventListener('click', () => loadPage(1, curso.id))
     });
 }
 
-async function loadStudentList(courseId){
+async function loadStudentList(courseId) {
     //Requisição a API
     const course = await getCourse(courseId);
     const students = await getStudents(courseId);
-    //Carregando elementos
+    //Carregando elementos e recebendo grid para inseração de estudantes
     const studentsGrid = renderStudentListElements(course.nome)
     students.forEach(estudante => {
         const studentCard = renderStudentCard(studentsGrid, estudante)
-        studentCard.addEventListener('click',() => loadPage(2, estudante.id))
+        studentCard.addEventListener('click', () => loadPage(2, estudante.id))
     });
 }
 
+async function loadStudentProfile(studentId) {
+    //Requisição a API
+    const student = await getStudent(studentId);
+    //Construindo perfil e recebendo container de notas
+    const gradeContainer = renderStudentProfile(student);
+    //Carregando notas
+    const grades = student.desempenho;
+    grades.forEach(nota => {
+        const gradeStatus = checkGrade(nota.valor);
+        renderGrade(gradeContainer, nota, gradeStatus)
+    });
+}
+// .attention-grade.danger-grade.approved-grade
+
+function checkGrade(grade){
+    if(grade >= 61){
+        return  'approved-grade';
+    }
+    else if(grade >= 50){
+        return 'attention-grade';
+    }
+    else{
+        return 'danger-grade'
+    }
+}
 
 init();
 await loadPage();

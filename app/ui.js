@@ -124,3 +124,61 @@ export function renderStudentCard(studentsGrid, estudante){
 
 
 // PÁGINA 03: DADOS ESTUDANTE
+export function renderStudentProfile(student){
+    clearMain();
+    
+    //Iniciando elementos de informação de perfil
+    const studentProfile = document.createElement('div');
+    const studentInfo = document.createElement('div');
+    const studentPhoto = document.createElement('img');
+    const studentName = document.createElement('span');
+    const studentGradesContainer = document.createElement('div');
+    
+    //Atribuindo classes
+    studentProfile.classList.add('student-profile');
+    studentInfo.classList.add('student-info', 'profile-container');
+    studentPhoto.classList.add('student-pfp');
+    studentName.classList.add('student-name');
+    //TODO: /\/\Poderia substituir o span em style para usar essa classe, fica mais semantico
+    studentGradesContainer.classList.add('student-grades', 'profile-container') 
+
+    //Carregando conteúdo
+    studentPhoto.src = student.foto;
+    studentName.textContent = String(student.nome).toUpperCase();
+
+    //Append
+    main.appendChild(studentProfile);
+    studentProfile.appendChild(studentInfo);
+    studentProfile.appendChild(studentGradesContainer);
+    studentInfo.appendChild(studentPhoto);
+    studentInfo.appendChild(studentName);
+    return studentGradesContainer;
+}
+
+//Carregamento de nota
+export function renderGrade(gradeContainer, grade, gradeStatus){
+    //Iniciando elemento
+    const gradeDiv = document.createElement('div');
+    const gradeValue = document.createElement('span');
+    const gradeBar = document.createElement('div');
+    const gradeBarFill = document.createElement('div');
+    const category = document.createElement('span');
+
+    //Atribuindo classes
+    gradeDiv.classList.add('grade');
+    gradeValue.classList.add(gradeStatus);
+    gradeBar.classList.add('grade-bar');
+    gradeBarFill.classList.add('grade-fill', gradeStatus)
+
+    //Carregando conteúdo
+    gradeValue.textContent = grade.valor;
+    gradeBarFill.style.height = `${grade.valor}%`; //TODO: Deve ter um jeito melhor de fazer isso
+    category.textContent = grade.categoria;
+
+    //Append
+    gradeBar.appendChild(gradeBarFill);
+    gradeDiv.appendChild(gradeValue);
+    gradeDiv.appendChild(gradeBar);
+    gradeDiv.appendChild(category);
+    gradeContainer.appendChild(gradeDiv);
+}

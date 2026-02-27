@@ -27,3 +27,10 @@ export async function getStudents(courseId) {
     const students = await response.json();
     return  students;
 }
+
+export async function getStudent(studentId){
+    const endPoint  = `https://lion-school-phbo.onrender.com/alunos/${studentId}`;
+    const response = await fetch(endPoint);
+    const student = await response.json();
+    return  student;
+}
